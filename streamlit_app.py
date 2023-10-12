@@ -35,7 +35,11 @@ def generate_response(prompt_input, email, passwd):
     # Hugging Face Login
     sign = Login(email, passwd)
     cookies = sign.login()
-    sign.saveCookies()
+    
+    # Save cookies to the local directory
+	cookie_path_dir = "./cookies_snapshot"
+	sign.saveCookiesToDir(cookie_path_dir)
+    
     # Create ChatBot                        
     chatbot = hugchat.ChatBot(cookies=cookies.get_dict())
     return chatbot.chat(prompt_input)
