@@ -36,9 +36,7 @@ def generate_response(prompt_input, email, passwd):
     sign = Login(email, passwd)
     cookies = sign.login()
     
-    # Save cookies to the local directory
-    cookie_path_dir = "./cookies_snapshot"
-    sign.saveCookiesToDir(cookie_path_dir)
+    sign.saveCookies()
     
     # Create ChatBot                        
     chatbot = hugchat.ChatBot(cookies=cookies.get_dict())
